@@ -19,3 +19,34 @@ func MethodTwo(arr []int, d int) []int {
 
 	return arr
 }
+
+// MethodThree is a juggling algorithm
+func MethodThree(arr []int, d int) []int {
+
+	g_c_d := gcd(len(arr), d)
+
+	for i := 0; i < g_c_d; i++ {
+		j := i
+		temp := arr[i]
+		for {
+			k := (j + d) % len(arr)
+			if k == i {
+				break
+			}
+			arr[j] = arr[k]
+			j = k
+		}
+
+		arr[j] = temp
+	}
+
+	return arr
+}
+
+func gcd(a, b int) int {
+	if b == 0 {
+		return a
+	}
+
+	return gcd(b, a%b)
+}
